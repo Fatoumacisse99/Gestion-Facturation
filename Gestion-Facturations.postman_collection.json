@@ -1,0 +1,1059 @@
+{
+	"info": {
+		"_postman_id": "8bd1b5f4-d0ea-4241-8ca9-4f3d862c0daf",
+		"name": "Gestion-Facturations",
+		"description": "La collection **Gestion-Facturation** regroupe tous les endpoints nécessaires pour interagir avec l'API backend de gestion des factures. Cette API permet de gérer les utilisateurs, les clients, les paiements, les modes de paiement, et les factures. Toutes les routes sont sécurisées et nécessitent un token JWT pour l'accès. Utilisez les exemples de requêtes inclus pour explorer les fonctionnalités.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38098523"
+	},
+	"item": [
+		{
+			"name": "Gestion-Utilisateurs",
+			"item": [
+				{
+					"name": "GET-USERS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMTkyNTc5NCwiZXhwIjoxNzMyMDEyMTk0fQ.8uJhNQpyQLvCuQwSO3tAwq8LVnRNqtE-HZzbXyjuuDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST-USERS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzMxODczOTYyLCJleHAiOjE3MzE5NjAzNjJ9.E5WZXAo3_sZ1dEGP2Uz0zaLHIQHff01J9HVbcgi7nwA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n  \"nom\": \"Mouhamed Camara\",\r\n  \"email\": \"camaramed123@gmail.com\",\r\n  \"role\": \"COMPTABLE\",\r\n  \"mot_de_passe\": \"123456\"\r\n  \r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzMxODczOTYyLCJleHAiOjE3MzE5NjAzNjJ9.E5WZXAo3_sZ1dEGP2Uz0zaLHIQHff01J9HVbcgi7nwA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nom\": \"Mouhamed Camara\",\r\n  \"email\": \"camaramed123@gmail.com\",\r\n  \"role\": \"COMPTABLE\",\r\n  \"mot_de_passe\": \"123456\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/users/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE-USERS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzMxODczOTYyLCJleHAiOjE3MzE5NjAzNjJ9.E5WZXAo3_sZ1dEGP2Uz0zaLHIQHff01J9HVbcgi7nwA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/users/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"users",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Le dossier **Gestion-Utilisateur** regroupe toutes les routes relatives à la gestion des utilisateurs. Cela inclut l'ajout, la modification, la suppression, la récupération des utilisateurs, et la gestion des rôles et statuts.\n\n- **Endpoints disponibles** :\n    \n    - `GET /api/users` : Liste des utilisateurs.\n        \n    - `POST /api/users` : Ajouter un nouvel utilisateur.\n        \n    - `PUT /api/users/:id` : Modifier les informations d'un utilisateur.\n        \n    - `DELETE /api/users/:id` : Supprimer un utilisateur."
+		},
+		{
+			"name": "Gestion-Clients",
+			"item": [
+				{
+					"name": "GET-CLIENTS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOiJDT01QVEFCTEUiLCJpYXQiOjE3MzE4NzQ0MzcsImV4cCI6MTczMTk2MDgzN30.ClmxVc_p6BljBEZ0P5Teii6BhBqSRzgzqPrjyxXO1Pc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nom\": \"Zahraa\",\r\n    \"prenom\": \"Diagaana\",\r\n    \"email\": \"Diaagna@example.com\",\r\n    \"telephone\": \"01233456789\",\r\n    \"adresse\": \"123 Rue Principale\",\r\n    \"id_utilisateur\": 6\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST-CLIENTS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOiJDT01QVEFCTEUiLCJpYXQiOjE3MzE4NzQ0MzcsImV4cCI6MTczMTk2MDgzN30.ClmxVc_p6BljBEZ0P5Teii6BhBqSRzgzqPrjyxXO1Pc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nom\": \"Diarra\",\r\n  \"prenom\": \"Fouley\",\r\n  \"email\": \"diarra@gmail.com\",\r\n  \"telephone\": \"004567455\",\r\n  \"adresse\": \"123 Rue Principale\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-CLIENTS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOiJDT01QVEFCTEUiLCJpYXQiOjE3MzE4NzQ0MzcsImV4cCI6MTczMTk2MDgzN30.ClmxVc_p6BljBEZ0P5Teii6BhBqSRzgzqPrjyxXO1Pc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nom\": \"Diarra\",\r\n  \"prenom\": \"Fouley\",\r\n  \"email\": \"diarra@gmail.com\",\r\n  \"telephone\": \"004567455\",\r\n  \"adresse\": \"Tevragh Zein\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/clients/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"clients",
+								"14"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE-CLIENTS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOiJDT01QVEFCTEUiLCJpYXQiOjE3MzE4NzQ0MzcsImV4cCI6MTczMTk2MDgzN30.ClmxVc_p6BljBEZ0P5Teii6BhBqSRzgzqPrjyxXO1Pc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:4000/api/clients/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"clients",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Le dossier **Gestion-Clients** regroupe toutes les routes pour gérer les clients. Cela inclut l'ajout, la modification, la suppression et la récupération des informations des clients.\n\n- **Endpoints disponibles** :\n    \n    - `GET /api/clients` : Liste des clients.\n        \n    - `POST /api/clients` : Ajouter un nouveau client.\n        \n    - `PUT /api/clients/:id` : Modifier un client existant.\n        \n    - `DELETE /api/clients/:id` : Supprimer un client."
+		},
+		{
+			"name": "Gestion-Facture",
+			"item": [
+				{
+					"name": "GET-FACTURES",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMjAxMTQ0NSwiZXhwIjoxNzMyMDk3ODQ1fQ.uJq_RROemdEUrd5CVb-PpFh4Mej8UXHrZhMHruBqBPs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date_emission\": \"2023-02-30\",\r\n  \"date_echeance\": \"2023-03-30\",\r\n  \"id_utilisateur\": 4,\r\n  \"id_client\": 48,\r\n  \"lignes\": [\r\n    {\r\n      \"nom\": \"Produit Q\",\r\n      \"quantite\": 2,\r\n      \"prix_unitaire\": 900\r\n    },\r\n    {\r\n      \"nom\": \"Produit M\",\r\n      \"quantite\": 1,\r\n      \"prix_unitaire\": 20\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/factures",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"factures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET-FACTURE-BY-ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOiJDT01QVEFCTEUiLCJpYXQiOjE3MzE4NzQ0MzcsImV4cCI6MTczMTk2MDgzN30.ClmxVc_p6BljBEZ0P5Teii6BhBqSRzgzqPrjyxXO1Pc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date_emission\": \"2023-02-30\",\r\n  \"date_echeance\": \"2023-03-30\",\r\n  \"id_utilisateur\": 4,\r\n  \"id_client\": 48,\r\n  \"lignes\": [\r\n    {\r\n      \"nom\": \"Produit Q\",\r\n      \"quantite\": 2,\r\n      \"prix_unitaire\": 900\r\n    },\r\n    {\r\n      \"nom\": \"Produit M\",\r\n      \"quantite\": 1,\r\n      \"prix_unitaire\": 20\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/factures/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"factures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-FACTURES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOiJDT01QVEFCTEUiLCJpYXQiOjE3MzE4NzQ0MzcsImV4cCI6MTczMTk2MDgzN30.ClmxVc_p6BljBEZ0P5Teii6BhBqSRzgzqPrjyxXO1Pc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date_emission\": \"2023-02-30\",\r\n  \"date_echeance\": \"2023-03-30\",\r\n  \"id_utilisateur\": 4,\r\n  \"id_client\": 48,\r\n  \"lignes\": [\r\n    {\r\n      \"nom\": \"Produit Q\",\r\n      \"quantite\": 2,\r\n      \"prix_unitaire\": 100\r\n    },\r\n    {\r\n      \"nom\": \"Produit M\",\r\n      \"quantite\": 1,\r\n      \"prix_unitaire\": 20\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/factures/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"factures",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST-FACTURES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMTkyNTc5NCwiZXhwIjoxNzMyMDEyMTk0fQ.8uJhNQpyQLvCuQwSO3tAwq8LVnRNqtE-HZzbXyjuuDw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date_emission\": \"2024-11-01\",\r\n    \"date_echeance\": \"2024-12-15\",\r\n    \"id_client\": 16,\r\n    \"lignes\": [\r\n        {\r\n            \"nom\": \"Extraction dentaire\",\r\n            \"quantite\": 2,\r\n            \"prix_unitaire\": 600\r\n        },\r\n        {\r\n            \"nom\": \"Consultation de suivi\",\r\n            \"quantite\": 10,\r\n            \"prix_unitaire\": 400\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/factures",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"factures"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE-FACTURES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMjAxMTQ0NSwiZXhwIjoxNzMyMDk3ODQ1fQ.uJq_RROemdEUrd5CVb-PpFh4Mej8UXHrZhMHruBqBPs",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"date_emission\": \"2023-02-30\",\r\n  \"date_echeance\": \"2023-03-30\",\r\n  \"id_utilisateur\": 4,\r\n  \"id_client\": 48,\r\n  \"lignes\": [\r\n    {\r\n      \"nom\": \"Produit Q\",\r\n      \"quantite\": 2,\r\n      \"prix_unitaire\": 100\r\n    },\r\n    {\r\n      \"nom\": \"Produit M\",\r\n      \"quantite\": 1,\r\n      \"prix_unitaire\": 20\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/factures/29",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"factures",
+								"29"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\nStartFragment\n\nLe dossier **Gestion-Facture** inclut toutes les routes nécessaires pour gérer les factures. Cela comprend la création, la modification, la suppression et la consultation des factures.\n\n- **Endpoints disponibles** :\n    \n    - `GET /api/factures` : Liste des factures.\n        \n    - `POST /api/factures` : Ajouter une nouvelle facture.\n        \n    - `PUT /api/factures/:id` : Modifier une facture existante.\n        \n    - `DELETE /api/factures/:id` : Supprimer une facture.\n        \n\nEndFragment"
+		},
+		{
+			"name": "Gestion-Modes-Paiements",
+			"item": [
+				{
+					"name": "GET-MODES",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMTk0NDY1MiwiZXhwIjoxNzMyMDMxMDUyfQ.c2yJ6YA0OzJWyPRoiFBzZariM4bkCaKkeZbpbi5701k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"libelle\": \"Versement\",\r\n  \"id_utilisateur\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/modes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"modes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-MODES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMTk0NDY1MiwiZXhwIjoxNzMyMDMxMDUyfQ.c2yJ6YA0OzJWyPRoiFBzZariM4bkCaKkeZbpbi5701k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"libelle\": \"LFKF\"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/modes/100",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"modes",
+								"100"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE-MODES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMTk0NDY1MiwiZXhwIjoxNzMyMDMxMDUyfQ.c2yJ6YA0OzJWyPRoiFBzZariM4bkCaKkeZbpbi5701k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"libelle\": \"Bankily\",\r\n  \"id_utilisateur\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/modes/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"modes",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST-MODES",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMTk0NDY1MiwiZXhwIjoxNzMyMDMxMDUyfQ.c2yJ6YA0OzJWyPRoiFBzZariM4bkCaKkeZbpbi5701k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"libelle\": \"Click\"\r\n  \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/modes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"modes"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\nLe dossier **Gestion-Mode-de-Paiement** contient les routes permettant de configurer les modes de paiement utilisés dans le système, comme les paiements par carte, virement bancaire, etc.\n\n- **Endpoints disponibles** :\n    \n    - `GET /api/modes` : Liste des modes de paiement.\n        \n    - `POST /api/modes` : Ajouter un mode de paiement.\n        \n    - `PUT /api/modes/:id` : Modifier un mode de paiement.\n        \n    - `DELETE /api/modes/:id` : Supprimer un mode de paiement.\n        \n\nEndFragment"
+		},
+		{
+			"name": "Gestion-Paiements",
+			"item": [
+				{
+					"name": "GET-PAIEMENTS",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOiJDT01QVEFCTEUiLCJpYXQiOjE3MzE4ODg0NDQsImV4cCI6MTczMTk3NDg0NH0.0kQLn4_NbXGw4D8s9GlJXvmUlXgzPtBzurhtf2myey0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date_paiement\": \"2024-10-31\",\r\n    \"montant_paye\": 100,\r\n    \"id_mode_paiement\": 1,\r\n    \"id_utilisateur\": 4,\r\n    \"id_facture\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/paiements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"paiements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST-PAIEMENTS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOiJDT01QVEFCTEUiLCJpYXQiOjE3MzE4ODg0NDQsImV4cCI6MTczMTk3NDg0NH0.0kQLn4_NbXGw4D8s9GlJXvmUlXgzPtBzurhtf2myey0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date_paiement\": \"2024-11-20\",\r\n    \"montant_paye\": 100,\r\n    \"id_mode_paiement\": 6,\r\n    \"id_facture\": 28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/paiements",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"paiements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-PAIEMENTS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsInJvbGUiOiJDT01QVEFCTEUiLCJpYXQiOjE3MzE4ODg0NDQsImV4cCI6MTczMTk3NDg0NH0.0kQLn4_NbXGw4D8s9GlJXvmUlXgzPtBzurhtf2myey0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date_paiement\": \"2024-11-20\",\r\n    \"montant_paye\": 100,\r\n    \"id_mode_paiement\": 6,\r\n    \"id_facture\": 28\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/paiements/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"paiements",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE-PAIEMENTS",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMTk0NDY1MiwiZXhwIjoxNzMyMDMxMDUyfQ.c2yJ6YA0OzJWyPRoiFBzZariM4bkCaKkeZbpbi5701k",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date_paiement\": \"2024-10-31\",\r\n    \"montant_paye\": 100,\r\n    \"id_mode_paiement\": 1,\r\n    \"id_utilisateur\": 4,\r\n    \"id_facture\": 4\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/api/paiements/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"api",
+								"paiements",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Le dossier **Gestion-Paiement** contient toutes les routes pour gérer les paiements. Les utilisateurs peuvent enregistrer des paiements partiels ou complets, visualiser les paiements associés à une facture, et suivre l'état des paiements.\n\n- **Endpoints disponibles** :\n    \n    - `GET /api/paiements` : Liste des paiements.\n        \n    - `POST /api/paiements` : Ajouter un paiement.\n        \n    - `DELETE /api/paiements/:id` : Supprimer un paiement"
+		},
+		{
+			"name": "Gestion-Authentification",
+			"item": [
+				{
+					"name": "GET-PROFILE",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PUT-PROFILE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMjA2NzQ4MCwiZXhwIjoxNzMyMTUzODgwfQ.dQjb_XBF77KCDNjQ0sOF4jttwYcs9mM_GT7Wru-9zTg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nom\": \"Cisse Fatouma\",\r\n  \"email\": \"cfama673@gmail.com\",\r\n  \"mot_de_passe\": \"Fama20364174\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST-AUTH-LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"cfama673@gmail.com\",\r\n  \"mot_de_passe\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST-REQUEST-PASSWORD",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cfama673@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/request-password-reset",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"request-password-reset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST-RESET-PASSWORD",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzMxNjcyNjkwLCJleHAiOjE3MzE3NTkwOTB9.QGo7t5l25_iEauzTbhOSwyFOmKHIibQxYdWfLFeg7S8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiY2ZhbWE2NzNAZ21haWwuY29tIiwiaWF0IjoxNzMxNjg0MzM0LCJleHAiOjE3MzE2ODUyMzR9.qK839UQuNl6IPL6nLPldDlO84UaNW1h31SpcubsVjrg\",\r\n  \"nouveau_mot_de_passe\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:4000/auth/reset-password?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiY2ZhbWE2NzNAZ21haWwuY29tIiwiaWF0IjoxNzMxNjg0MzM0LCJleHAiOjE3MzE2ODUyMzR9.qK839UQuNl6IPL6nLPldDlO84UaNW1h31SpcubsVjrg",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"auth",
+								"reset-password"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsImVtYWlsIjoiY2ZhbWE2NzNAZ21haWwuY29tIiwiaWF0IjoxNzMxNjg0MzM0LCJleHAiOjE3MzE2ODUyMzR9.qK839UQuNl6IPL6nLPldDlO84UaNW1h31SpcubsVjrg"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "**Authentification** contient les routes liées à la connexion des utilisateurs, à la gestion des tokens, et à la réinitialisation des mots de passe. Ces endpoints permettent de sécuriser l'accès aux fonctionnalités de l'application.EndFragment"
+		}
+	]
+}
