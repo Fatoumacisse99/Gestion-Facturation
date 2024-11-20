@@ -20,11 +20,6 @@ class PaiementValidator {
         .isInt({ gt: 0 })
         .withMessage("L'ID du mode de paiement doit être un entier positif!"),
 
-      check("id_utilisateur")
-        .notEmpty()
-        .withMessage("L'ID de l'utilisateur est requis!")
-        .isInt({ gt: 0 })
-        .withMessage("L'ID de l'utilisateur doit être un entier positif!"),
 
       check("id_facture")
         .notEmpty()
@@ -50,6 +45,15 @@ class PaiementValidator {
       check("id_mode_paiement").optional().isInt({ gt: 0 }).withMessage("L'ID du mode de paiement doit être un entier positif!"),
       check("id_utilisateur").optional().isInt({ gt: 0 }).withMessage("L'ID de l'utilisateur doit être un entier positif!"),
       check("id_facture").optional().isInt({ gt: 0 }).withMessage("L'ID de la facture doit être un entier positif!"),
+    ];
+  }
+  static validateGetPaiementById() {
+    return [
+      param('id')
+        .notEmpty()
+        .withMessage("L'ID est requis pour récupérer un paiement!")
+        .isInt({ gt: 0 })
+        .withMessage("L'ID doit être un entier positif!"),
     ];
   }
 

@@ -35,68 +35,93 @@ export default class FactureController {
       next({ status: 500, message: "Erreur lors de la récupération de la facture." });
     }
   }
- static async createFacture(req, res, next) {
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-  try {
-    const { date_emission, id_client, date_echeance, lignes } = req.body;
-    const id_utilisateur = req.user.id; 
-    const existingClient = await prisma.client.findUnique({
-      where: { id: Number(id_client) },
-    });
-    if (!existingClient) {
-      return res.status(400).json({ message: "Le client spécifié n'existe pas." });
+  static async createFacture(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
     }
-    const existingFacture = await prisma.facture.findFirst({
-      where: {
-        date_emission: new Date(date_emission),
-        id_client: Number(id_client),
-      },
-    });
-    if (existingFacture) {
-      return res.status(400).json({ message: "Une facture avec ces détails existe déjà." });
-    }
-    if (!lignes || lignes.length === 0) {
-      return res.status(400).json({ message: "Vous devez ajouter au moins une ligne de facture." });
-    }
-
-    const montant_total = lignes.reduce(
-      (total, ligne) => total + ligne.quantite * ligne.prix_unitaire,
-      0
-    );
-    const facture = await prisma.facture.create({
-      data: {
-        date_emission: new Date(date_emission),
-        date_echeance: new Date(date_echeance),
-        montant: montant_total.toFixed(2),
-        id_utilisateur: Number(id_utilisateur), 
-        id_client: Number(id_client),
-        pourcentage_paiement: 0,
-        LigneFacture: {
-          create: lignes.map((ligne) => ({
-            nom: ligne.nom,
-            quantite: ligne.quantite,
-            prix_unitaire: ligne.prix_unitaire,
-            montant_ligne: parseFloat(
-              (ligne.quantite * ligne.prix_unitaire).toFixed(2)
-            ),
-          })),
+  
+    try {
+      const { date_emission, id_client, date_echeance, lignes } = req.body;
+      const id_utilisateur = req.user.id;
+  
+      // Vérifier si le client existe
+      const existingClient = await prisma.client.findUnique({
+        where: { id: Number(id_client) },
+      });
+      if (!existingClient) {
+        return res.status(400).json({ message: "Le client spécifié n'existe pas." });
+      }
+  
+      // Vérifier si les lignes de facture sont valides
+      if (!lignes || lignes.length === 0) {
+        return res.status(400).json({ message: "Vous devez ajouter au moins une ligne de facture." });
+      }
+  
+      // Vérifier si une facture identique existe déjà
+      const similarFacture = await prisma.facture.findFirst({
+        where: {
+          id_client: Number(id_client),
+          date_emission: new Date(date_emission),
         },
-      },
-      include: { LigneFacture: true, client: true },
-    });
-
-    res.status(201).json({
-      message: "Facture ajoutée avec succès.",
-      data: facture,
-    });
-  } catch (error) {
-    console.error(error);
-    next({ status: 500, message: "Erreur lors de l'ajout de la facture." });
+        include: { LigneFacture: true },
+      });
+  
+      if (
+        similarFacture &&
+        similarFacture.LigneFacture.length === lignes.length &&
+        similarFacture.LigneFacture.every((existingLigne, index) => {
+          const newLigne = lignes[index];
+          return (
+            existingLigne.nom === newLigne.nom &&
+            existingLigne.quantite === newLigne.quantite &&
+            existingLigne.prix_unitaire === newLigne.prix_unitaire
+          );
+        })
+      ) {
+        return res
+          .status(400)
+          .json({ message: "Une facture identique avec ces détails existe déjà." });
+      }
+  
+      // Calculer le montant total
+      const montant_total = lignes.reduce(
+        (total, ligne) => total + ligne.quantite * ligne.prix_unitaire,
+        0
+      );
+  
+      // Créer la facture
+      const facture = await prisma.facture.create({
+        data: {
+          date_emission: new Date(date_emission),
+          date_echeance: new Date(date_echeance),
+          montant: montant_total.toFixed(2),
+          id_utilisateur: Number(id_utilisateur),
+          id_client: Number(id_client),
+          pourcentage_paiement: 0,
+          LigneFacture: {
+            create: lignes.map((ligne) => ({
+              nom: ligne.nom,
+              quantite: ligne.quantite,
+              prix_unitaire: ligne.prix_unitaire,
+              montant_ligne: parseFloat((ligne.quantite * ligne.prix_unitaire).toFixed(2)),
+            })),
+          },
+        },
+        include: { LigneFacture: true, client: true },
+      });
+  
+      // Répondre avec succès
+      res.status(201).json({
+        message: "Facture ajoutée avec succès.",
+        data: facture,
+      });
+    } catch (error) {
+      console.error("Erreur lors de l'ajout de la facture :", error);
+      next({ status: 500, message: "Erreur interne du serveur." });
+    }
   }
-}
+  
 
   static async updateFacture(req, res, next) {
     const errors = validationResult(req);

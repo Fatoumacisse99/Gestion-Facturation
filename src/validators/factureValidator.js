@@ -21,10 +21,26 @@ class FactureValidator {
         .withMessage("La date d'échéance est requise!")
         .isISO8601()
         .withMessage("La date d'échéance doit être au format ISO 8601."),
-      check('pourcentage_paiement')
-        .optional()
-        .isInt({ min: 0, max: 100 })
-        .withMessage("Le pourcentage de paiement doit être un entier entre 0 et 100."),
+
+      check('lignes')
+        .isArray({ min: 1 })
+        .withMessage("Vous devez ajouter au moins une ligne de facture!"),
+
+      check('lignes.*.quantite')
+        .notEmpty()
+        .withMessage("La quantité est requise!")
+        .isInt({ gt: 0 })
+        .withMessage("La quantité doit être un entier positif!"),
+
+      check('lignes.*.prix_unitaire')
+        .notEmpty()
+        .withMessage("Le prix unitaire est requis!")
+        .isFloat({ gt: 0 })
+        .withMessage("Le prix unitaire doit être un nombre positif!"),
+
+      check('lignes.*.nom')
+        .notEmpty()
+        .withMessage("Le nom de l'article est requis!")
     ];
   }
 
@@ -51,17 +67,32 @@ class FactureValidator {
         .isISO8601()
         .withMessage("La date d'échéance doit être au format ISO 8601."),
 
-      check('montant')
+      check('lignes')
         .optional()
-        .isNumeric()
-        .withMessage("Le montant doit être un nombre."),
+        .isArray({ min: 1 })
+        .withMessage("Vous devez ajouter au moins une ligne de facture!"),
 
-      check('pourcentage_paiement')
+      check('lignes.*.quantite')
         .optional()
-        .isInt({ min: 0, max: 100 })
-        .withMessage("Le pourcentage de paiement doit être un entier entre 0 et 100."),
+        .notEmpty()
+        .withMessage("La quantité est requise!")
+        .isInt({ gt: 0 })
+        .withMessage("La quantité doit être un entier positif!"),
+
+      check('lignes.*.prix_unitaire')
+        .optional()
+        .notEmpty()
+        .withMessage("Le prix unitaire est requis!")
+        .isFloat({ gt: 0 })
+        .withMessage("Le prix unitaire doit être un nombre positif!"),
+
+      check('lignes.*.nom')
+        .optional()
+        .notEmpty()
+        .withMessage("Le nom de l'article est requis!")
     ];
   }
+
 
   static validateDeleteFacture() {
     return [
@@ -145,5 +176,4 @@ class FactureValidator {
     ];
   }
 }
-
 export default FactureValidator;

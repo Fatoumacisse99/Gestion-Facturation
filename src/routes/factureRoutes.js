@@ -65,7 +65,7 @@ router.put(
 router.delete(
   '/:id',
   authenticateToken,
-  authorizeRole(['ADMIN', 'COMPTABLE']),
+  authorizeRole(['ADMIN']),
   FactureValidator.validateDeleteFacture(),
   factureController.deleteFacture
 );

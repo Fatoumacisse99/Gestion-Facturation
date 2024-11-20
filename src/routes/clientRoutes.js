@@ -1,16 +1,3 @@
-// import express from 'express';
-// import clientController from '../controllers/clientController.js';
-// import ClientValidator from '../validators/clientValidator.js';
-
-// const router = express.Router();
-
-// router.get('/', clientController.getAllClients);
-// router.get('/:id', ClientValidator.validateDeleteClient(), clientController.getClientById);
-// router.post('/', ClientValidator.validateCreateClient(), clientController.createClient);
-// router.put('/:id', ClientValidator.validateUpdateClient(), clientController.updateClient);
-// router.delete('/:id', ClientValidator.validateDeleteClient(), clientController.deleteClient);
-
-// export default router;
 import express from 'express';
 import clientController from '../controllers/clientController.js';
 import ClientValidator from '../validators/clientValidator.js';
@@ -36,7 +23,7 @@ router.get(
 router.post(
   '/',
   authenticateToken,
-  authorizeRole(['ADMIN', 'COMPTABLE']), // Autorisé pour Admin et Comptable
+  authorizeRole(['ADMIN', 'COMPTABLE']), 
   ClientValidator.validateCreateClient(),
   clientController.createClient
 );
@@ -44,15 +31,14 @@ router.post(
 router.put(
   '/:id',
   authenticateToken,
-  authorizeRole(['ADMIN', 'COMPTABLE']), // Autorisé pour Admin et Comptable
-  ClientValidator.validateUpdateClient(),
+  authorizeRole(['ADMIN', 'COMPTABLE']), 
   clientController.updateClient
 );
 
 router.delete(
   '/:id',
   authenticateToken,
-  authorizeRole(['ADMIN', 'COMPTABLE']), // Autorisé pour Admin et Comptable
+  authorizeRole(['ADMIN']),
   ClientValidator.validateDeleteClient(),
   clientController.deleteClient
 );

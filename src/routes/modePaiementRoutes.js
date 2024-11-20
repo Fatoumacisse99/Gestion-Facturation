@@ -1,13 +1,47 @@
 import express from 'express';
 import ModePaiementController from '../controllers/modePaiementController.js';
 import ModePaiementValidator from '../validators/modePaiementValidator.js';
+import { authenticateToken, authorizeRole } from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.get('/', ModePaiementController.getAllModesPaiement);
-router.get('/:id', ModePaiementController.getModePaiementById);
-router.post('/', ModePaiementValidator.validateCreateModePaiement(), ModePaiementController.createModePaiement);
-router.put('/:id', ModePaiementValidator.validateUpdateModePaiement(), ModePaiementController.updateModePaiement);
-router.delete('/:id', ModePaiementValidator.validateDeleteModePaiement(), ModePaiementController.deleteModePaiement);
+router.get(
+  '/', 
+  authenticateToken, 
+  authorizeRole(['ADMIN', 'COMPTABLE']), 
+  ModePaiementController.getAllModesPaiement
+);
+
+router.get(
+  '/:id', 
+  authenticateToken, 
+  authorizeRole(['ADMIN', 'COMPTABLE']), 
+  ModePaiementController.getModePaiementById
+);
+
+router.post(
+  '/', 
+  authenticateToken, 
+  authorizeRole(['ADMIN', 'COMPTABLE']), 
+  ModePaiementValidator.validateCreateModePaiement(), 
+  ModePaiementController.createModePaiement
+);
+
+router.put(
+  '/:id', 
+  authenticateToken, 
+  authorizeRole(['ADMIN', 'COMPTABLE']), 
+  ModePaiementValidator.validateUpdateModePaiement(), 
+  ModePaiementController.updateModePaiement
+);
+
+router.delete(
+  '/:id', 
+  authenticateToken, 
+  authorizeRole(['ADMIN']),
+  ModePaiementValidator.validateDeleteModePaiement(), 
+  ModePaiementController.deleteModePaiement
+);
 
 export default router;
+

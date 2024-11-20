@@ -8,29 +8,24 @@ class ModePaiementValidator {
   static validateCreateModePaiement() {
     return [
       check("libelle")
-        .notEmpty()
-        .withMessage("Le libellé est requis!")
-        .isLength({ max: 50 })
-        .withMessage("Le libellé ne doit pas dépasser 50 caractères!")
-        .custom(async (value) => {
-          // Utiliser findFirst pour vérifier l'existence par libelle
-          const existingMode = await prisma.modePaiement.findFirst({
-            where: { libelle: value },
-          });
-          if (existingMode) {
-            throw new Error("Ce libellé de mode de paiement existe déjà!");
-          }
-          return true; // Si tout est OK, renvoyez true
-        }),
-
-      check("id_utilisateur")
-        .notEmpty()
-        .withMessage("L'ID de l'utilisateur est requis!")
-        .isInt({ gt: 0 })
-        .withMessage("L'ID de l'utilisateur doit être un entier positif!"),
+  .notEmpty()
+  .withMessage("Le libellé est requis!")
+  .isLength({ max: 50 })
+  .withMessage("Le libellé ne doit pas dépasser 50 caractères!")
+  .matches(/^[a-zA-Z\s]+$/)
+  .withMessage("Le libellé ne doit contenir que des lettres et des espaces.")
+  .custom(async (value) => {
+    const existingMode = await prisma.modePaiement.findFirst({
+      where: { libelle: value },
+    });
+    if (existingMode) {
+      throw new Error("Ce libellé de mode de paiement existe déjà!");
+    }
+    return true;
+  })
+      
     ];
   }
-
   static validateUpdateModePaiement() {
     return [
       param("id")
@@ -43,23 +38,21 @@ class ModePaiementValidator {
         .optional()
         .isLength({ max: 50 })
         .withMessage("Le libellé ne doit pas dépasser 50 caractères!")
-        .custom(async (value, { req }) => {
-          // Vérifier si un nouveau libellé est fourni et s'il existe déjà
-          if (value) {
-            const existingMode = await prisma.modePaiement.findFirst({
-              where: { libelle: value },
-            });
-            if (existingMode) {
-              throw new Error("Ce libellé de mode de paiement existe déjà!");
-            }
-          }
-          return true; // Si tout est OK, renvoyez true
-        }),
+        // .custom(async (value, { req }) => {
+        //   if (value) {
+        //     const existingMode = await prisma.modePaiement.findFirst({
+        //       where: { libelle: value },
+        //     });
+        //     if (existingMode) {
+        //       throw new Error("Ce libellé de mode de paiement existe déjà!");
+        //     }
+        //   }
+        //   return true; 
+        // }),
       
-      check("id_utilisateur").optional().isInt({ gt: 0 }).withMessage("L'ID de l'utilisateur doit être un entier positif!"),
+      
     ];
   }
-
   static validateDeleteModePaiement() {
     return [
       param("id")
@@ -70,5 +63,4 @@ class ModePaiementValidator {
     ];
   }
 }
-
 export default ModePaiementValidator;

@@ -17,7 +17,7 @@ class ClientValidator {
       .notEmpty()
       .withMessage("Le prénom ne peut pas être vide!")
       .isLength({ max: 50 })
-      .withMessage("Le prénom ne doit pas dépasser 50 caractères!")
+      .withMessage("Le prénom ne doit p!")
       .matches(/[a-zA-Z]/)
       .withMessage("Le prénom doit contenir au moins une lettre!"),
 
@@ -30,12 +30,12 @@ class ClientValidator {
         .withMessage("L'email ne doit pas dépasser 100 caractères!"),
 
         check("telephone")
-        .notEmpty()
-        .withMessage("Le numéro de téléphone est requis!")
-        .isLength({ max: 12 })
-        .withMessage("Le numéro de téléphone ne doit pas dépasser 12 caractères!")
-        .isNumeric()
-        .withMessage("Le numéro de téléphone ne doit contenir que des chiffres!"),
+      .notEmpty()
+      .withMessage("Le numéro de téléphone est requis!")
+      .isLength({ min: 8, max: 12 })
+      .withMessage("Le numéro de téléphone doit contenir entre 8 et 12 caractères!")
+      .isNumeric()
+      .withMessage("Le numéro de téléphone ne doit contenir que des chiffres!"),
 
       check("adresse")
         .notEmpty()

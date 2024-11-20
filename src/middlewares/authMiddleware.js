@@ -25,9 +25,12 @@ export const authenticateToken = (req, res, next) => {
   });
 };
 
-export const authorizeRole = (allowedRoles) => (req, res, next) => {
-  if (!req.user || !allowedRoles.includes(req.user.role)) {
-    return res.status(403).json({ message: 'Accès interdit. Rôle insuffisant.' });
-  }
-  next();
+export const authorizeRole = (roles) => {
+  return (req, res, next) => {
+    console.log("Rôle utilisateur :", req.user.role); // Débogage
+    if (!roles.includes(req.user.role)) {
+      return res.status(403).json({ message: "Accès interdit : Vous n'êtes pas autorisé à effectuer cette action." });
+    }
+    next();
+  };
 };
