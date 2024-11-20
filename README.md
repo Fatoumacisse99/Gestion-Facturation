@@ -134,15 +134,15 @@ http://localhost:4000
 ---
 ## 📋 Documentation API
 
-Pour faciliter l'utilisation des endpoints de l'API, une collection Postman est disponible. Cette collection comprend tous les endpoints nécessaires pour tester et interagir avec l'API backend.
-
-🔗 **[Télécharger la Collection Postman](sandbox:/mnt/data/Gestion-Facturations.postman_collection.json)**
+Pour faciliter l'utilisation des endpoints de l'API, une collection Postman est incluse dans le projet. Cette collection comprend tous les endpoints nécessaires pour tester et interagir avec l'API backend.
 
 ### 📋 Importer la Collection dans Postman
-1. Ouvrez Postman.
-2. Cliquez sur "Importer".
-3. Sélectionnez le fichier JSON téléchargé depuis le lien ci-dessus.
-4. Explorez les endpoints et testez les fonctionnalités de l'API.
+1. Téléchargez le fichier **Gestion-Facturations.postman_collection.json** depuis le dossier racine du projet.
+2. Ouvrez Postman.
+3. Cliquez sur le bouton **Importer** dans l'interface de Postman.
+4. Sélectionnez le fichier **Gestion-Facturations.postman_collection.json** que vous avez téléchargé.
+5. Cliquez sur **Importer** pour ajouter la collection à votre espace de travail.
+6. Explorez les endpoints et testez les différentes fonctionnalités de l'API.
 
 ## ✍️ Auteur
 
