@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 
 async function createAdmin() {
   try {
-    // Hasher le mot de passe
+
     const hashedPassword = await bcrypt.hash('admin123', 10);
 
     // Créer un utilisateur admin avec l'email cfama673@gmail.com
