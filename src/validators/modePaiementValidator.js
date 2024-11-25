@@ -38,6 +38,8 @@ class ModePaiementValidator {
         .optional()
         .isLength({ max: 50 })
         .withMessage("Le libellé ne doit pas dépasser 50 caractères!")
+        .matches(/^[a-zA-Z\s]+$/)
+        .withMessage("Le libellé ne doit contenir que des lettres et des espaces.")
         // .custom(async (value, { req }) => {
         //   if (value) {
         //     const existingMode = await prisma.modePaiement.findFirst({

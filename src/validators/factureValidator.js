@@ -89,7 +89,13 @@ class FactureValidator {
       check('lignes.*.nom')
         .optional()
         .notEmpty()
-        .withMessage("Le nom de l'article est requis!")
+        .isLength({ max: 50 })
+  .withMessage("Nom de l'article ne doit pas dépasser 50 caractères!")
+  .matches(/.*[a-zA-ZÀ-ÿ]+.*/)
+  .withMessage("Le nom doit contenir au moins une lettre!")
+  .matches(/^[a-zA-ZÀ-ÿ0-9\s\-]+$/)
+  .withMessage("Le nom ne peut contenir que des lettres, des chiffres, des espaces et des tirets!")
+        
     ];
   }
 

@@ -8,11 +8,13 @@ class PaiementValidator {
         .notEmpty()
         .withMessage("La date de paiement est requise!"),
 
-      check("montant_paye")
+        check("montant_paye")
         .notEmpty()
         .withMessage("Le montant payé est requis!")
-        .isDecimal()
-        .withMessage("Le montant payé doit être un nombre décimal!"),
+        .isDecimal({ decimal_digits: '0,2', force_decimal: false })
+        .withMessage("Le montant payé doit être un nombre décimal valide!")
+        .custom((value) => value > 0)
+        .withMessage("Le montant payé doit être supérieur à 0!"),
 
       check("id_mode_paiement")
         .notEmpty()
@@ -39,9 +41,12 @@ class PaiementValidator {
 
       check("date_paiement").optional(),
       check("montant_paye")
-        .optional()
-        .isDecimal()
-        .withMessage("Le montant payé doit être un nombre décimal!"),
+        .notEmpty()
+        .withMessage("Le montant payé est requis!")
+        .isDecimal({ decimal_digits: '0,2', force_decimal: false })
+        .withMessage("Le montant payé doit être un nombre décimal valide!")
+        .custom((value) => value > 0)
+        .withMessage("Le montant payé doit être supérieur à 0!"),
       check("id_mode_paiement").optional().isInt({ gt: 0 }).withMessage("L'ID du mode de paiement doit être un entier positif!"),
       check("id_utilisateur").optional().isInt({ gt: 0 }).withMessage("L'ID de l'utilisateur doit être un entier positif!"),
       check("id_facture").optional().isInt({ gt: 0 }).withMessage("L'ID de la facture doit être un entier positif!"),

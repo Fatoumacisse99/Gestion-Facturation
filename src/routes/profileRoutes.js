@@ -26,7 +26,7 @@ router.get('/', authenticateToken, async (req, res) => {
       res.status(500).json({ message: 'Erreur interne.', error: error.message });
     }
   });
-  // Route PUT pour mettre à jour le profil utilisateur
+ 
   router.put('/', authenticateToken, async (req, res) => {
     try {
       const { id } = req.user; // Récupération de l'utilisateur connecté via le token
@@ -52,6 +52,29 @@ router.get('/', authenticateToken, async (req, res) => {
     } catch (error) {
       res.status(500).json({ message: 'Erreur interne.', error: error.message });
     }
+    router.post('/change-password', authenticateToken, async (req, res) => {
+      try {
+        const { id } = req.user;
+        const { oldPassword, newPassword } = req.body;
+    
+        const user = await prisma.utilisateur.findUnique({ where: { id } });
+        if (!user) return res.status(404).json({ message: 'Utilisateur introuvable.' });
+    
+        const isMatch = await bcrypt.compare(oldPassword, user.mot_de_passe);
+        if (!isMatch) return res.status(400).json({ message: 'Ancien mot de passe incorrect.' });
+    
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        await prisma.utilisateur.update({
+          where: { id },
+          data: { mot_de_passe: hashedPassword },
+        });
+    
+        res.status(200).json({ message: 'Mot de passe changé avec succès.' });
+      } catch (error) {
+        res.status(500).json({ message: 'Erreur interne.', error: error.message });
+      }
+    });    
   });
+
   
   export default router;

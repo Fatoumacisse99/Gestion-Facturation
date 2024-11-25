@@ -1,4 +1,4 @@
-
+// src/middelwares/validationHandler.js
 const errorHandler = (err, _req, res, _next) => {
   console.error(err); // Log l'erreur pour le développement
 

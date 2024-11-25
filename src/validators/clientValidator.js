@@ -6,20 +6,21 @@ class ClientValidator {
   static validateCreateClient() {
     return [
       check("nom")
-      .notEmpty()
-      .withMessage("Le nom ne peut pas être vide!")
-      .isLength({ max: 50 })
-      .withMessage("Le nom ne doit pas dépasser 50 caractères!")
-      .matches(/[a-zA-Z]/)
-      .withMessage("Le nom doit contenir au moins une lettre!"),
-    
-    check("prenom")
-      .notEmpty()
-      .withMessage("Le prénom ne peut pas être vide!")
-      .isLength({ max: 50 })
-      .withMessage("Le prénom ne doit p!")
-      .matches(/[a-zA-Z]/)
-      .withMessage("Le prénom doit contenir au moins une lettre!"),
+  .notEmpty()
+  .withMessage("Le nom ne peut pas être vide!")
+  .isLength({ max: 50 })
+  .withMessage("Le nom ne doit pas dépasser 50 caractères!")
+  .matches(/^[a-zA-ZÀ-ÿ]+$/)
+  .withMessage("Le nom doit contenir uniquement des lettres!"),
+
+check("prenom")
+  .notEmpty()
+  .withMessage("Le prénom ne peut pas être vide!")
+  .isLength({ max: 50 })
+  .withMessage("Le prénom ne doit pas dépasser 50 caractères!")
+  .matches(/^[a-zA-ZÀ-ÿ]+$/)
+  .withMessage("Le prénom doit contenir uniquement des lettres!"),
+
 
       check("email")
         .notEmpty()
@@ -29,7 +30,7 @@ class ClientValidator {
         .isLength({ max: 100 })
         .withMessage("L'email ne doit pas dépasser 100 caractères!"),
 
-        check("telephone")
+      check("telephone")
       .notEmpty()
       .withMessage("Le numéro de téléphone est requis!")
       .isLength({ min: 8, max: 12 })
@@ -38,10 +39,15 @@ class ClientValidator {
       .withMessage("Le numéro de téléphone ne doit contenir que des chiffres!"),
 
       check("adresse")
-        .notEmpty()
-        .withMessage("L'adresse est requise!")
-        .isLength({ max: 50 })
-        .withMessage("L'adresse ne doit pas dépasser 50 caractères!"),
+  .notEmpty()
+  .withMessage("L'adresse est requise!")
+  .isLength({ max: 50 })
+  .withMessage("L'adresse ne doit pas dépasser 50 caractères!")
+  .matches(/.*[a-zA-ZÀ-ÿ]+.*/)
+  .withMessage("L'adresse doit contenir au moins une lettre!")
+  .matches(/^[a-zA-ZÀ-ÿ0-9\s\-]+$/)
+  .withMessage("L'adresse ne peut contenir que des lettres, des chiffres, des espaces et des tirets!")
+
     ];
   }
 

@@ -39,7 +39,7 @@ router.put(
 router.delete(
   '/:id', 
   authenticateToken, 
-  authorizeRole(['ADMIN']), 
+  authorizeRole(['ADMIN', 'COMPTABLE']), 
   PaiementValidator.validateDeletePaiement(), 
   PaiementController.deletePaiement
 );

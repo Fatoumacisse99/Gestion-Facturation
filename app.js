@@ -10,6 +10,7 @@ import modePaiementRoutes from './src/routes/modePaiementRoutes.js';
 import errorHandler from './src/middlewares/validationHandler.js';
 import authRoutes from './src/routes/authRoutes.js';
 import profileRoutes from './src/routes/profileRoutes.js';
+
 import dotenv from 'dotenv';
 const app = express();
 dotenv.config();

@@ -58,31 +58,31 @@ export default class FactureController {
         return res.status(400).json({ message: "Vous devez ajouter au moins une ligne de facture." });
       }
   
-      // Vérifier si une facture identique existe déjà
-      const similarFacture = await prisma.facture.findFirst({
-        where: {
-          id_client: Number(id_client),
-          date_emission: new Date(date_emission),
-        },
-        include: { LigneFacture: true },
-      });
+      // // Vérifier si une facture identique existe déjà
+      // const similarFacture = await prisma.facture.findFirst({
+      //   where: {
+      //     id_client: Number(id_client),
+      //     date_emission: new Date(date_emission),
+      //   },
+      //   include: { LigneFacture: true },
+      // });
   
-      if (
-        similarFacture &&
-        similarFacture.LigneFacture.length === lignes.length &&
-        similarFacture.LigneFacture.every((existingLigne, index) => {
-          const newLigne = lignes[index];
-          return (
-            existingLigne.nom === newLigne.nom &&
-            existingLigne.quantite === newLigne.quantite &&
-            existingLigne.prix_unitaire === newLigne.prix_unitaire
-          );
-        })
-      ) {
-        return res
-          .status(400)
-          .json({ message: "Une facture identique avec ces détails existe déjà." });
-      }
+      // if (
+      //   similarFacture &&
+      //   similarFacture.LigneFacture.length === lignes.length &&
+      //   similarFacture.LigneFacture.every((existingLigne, index) => {
+      //     const newLigne = lignes[index];
+      //     return (
+      //       existingLigne.nom === newLigne.nom &&
+      //       existingLigne.quantite === newLigne.quantite &&
+      //       existingLigne.prix_unitaire === newLigne.prix_unitaire
+      //     );
+      //   })
+      // ) {
+      //   return res
+      //     .status(400)
+      //     .json({ message: "Une facture identique avec ces détails existe déjà." });
+      // }
   
       // Calculer le montant total
       const montant_total = lignes.reduce(
@@ -176,11 +176,7 @@ export default class FactureController {
 
   static async deleteFacture(req, res, next) {
     try {
-      // Vérifier si l'utilisateur a le rôle ADMIN
-      if (req.user.role !== 'ADMIN') {
-        return res.status(403).json({ message: "Accès interdit. Seul un administrateur peut supprimer une facture." });
-      }
-  
+      
       const factureId = Number(req.params.id);
   
       // Vérifier l'existence de la facture

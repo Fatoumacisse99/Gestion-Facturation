@@ -2,6 +2,7 @@ import express from 'express';
 import clientController from '../controllers/clientController.js';
 import ClientValidator from '../validators/clientValidator.js';
 import { authenticateToken, authorizeRole } from '../middlewares/authMiddleware.js';
+import errorHandler from '../middlewares/validationHandler.js';
 
 const router = express.Router();
 
@@ -38,7 +39,7 @@ router.put(
 router.delete(
   '/:id',
   authenticateToken,
-  authorizeRole(['ADMIN']),
+  authorizeRole(['ADMIN', 'COMPTABLE']),
   ClientValidator.validateDeleteClient(),
   clientController.deleteClient
 );
